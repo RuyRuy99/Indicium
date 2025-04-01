@@ -1,0 +1,5 @@
+# Ignorar diretórios de logs
+airflow/logs/
+
+# Ignorar dados persistentes do banco
+dbdata/

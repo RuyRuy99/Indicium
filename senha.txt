@@ -1,0 +1,1 @@
+docker exec -it indicium-airflow-1 airflow users create --username ruy --password ruy --firstname ruy --lastname ruy --role Admin --email ruy@example.com
