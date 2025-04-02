@@ -17,7 +17,7 @@ services:
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://northwind_user:thewindisblowing@db:5432/northwind
-      - AIRFLOW__CORE__FERNET_KEY=KYzqSd5Ds0KHJengNlbUBCSHICZpA1dNIY5fzw-AuVc=   # Substitua por sua chave Fernet gerada
+      - AIRFLOW__CORE__FERNET_KEY=KYzqSd5Ds0KHJengNlbUBCSHICZpA1dNIY5fzw-AuVc=
       - AIRFLOW__CORE__LOAD_EXAMPLES=false
       - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=true
     volumes:
@@ -26,5 +26,17 @@ services:
       - ./airflow/plugins:/opt/airflow/plugins
     ports:
       - "8080:8080"
+    depends_on:
+      - db
+
+  embulk:
+    build:
+      context: ./embulk
+      dockerfile: Dockerfile
+    image: techindicium/embulk-custom:latest
+    environment: {}
+    volumes:
+      - ./data:/data
+      - ./embulk:/embulk  # Mapeia a pasta embulk para acessar os arquivos de configuração
     depends_on:
       - db

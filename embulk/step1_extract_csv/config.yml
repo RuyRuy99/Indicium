@@ -1,0 +1,21 @@
+
+in:
+  type: file
+  path_prefix: "/data/order_details.csv"
+  parser:
+    type: csv
+    header_line: true
+    columns:
+      - {name: order_id, type: string}
+      - {name: product_id, type: string}
+      - {name: unit_price, type: string}
+      - {name: quantity, type: string}
+      - {name: discount, type: string}
+
+out:
+  type: file
+  path_prefix: "/data/csv/2024-01-02/order_details.csv" # Nome único para saída
+  file_ext: "" # Remove a extensão adicional
+  formatter:
+    type: csv
+    header_line: true # Mantém o cabeçalho apenas no início
